@@ -2,10 +2,7 @@ package group.gamelife.shiro.demo.entity;
 
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 
 /**
@@ -21,5 +18,7 @@ public class Operator {
     @Column private String name;
     @Column private int age;
     @Column private String password;
-    @OneToMany private List<Integer> roles;
+    @OneToMany(orphanRemoval = true)
+    @JoinColumn(name = "roleId")
+    private List<Role> roles;
 }

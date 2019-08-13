@@ -27,12 +27,12 @@ public class CustomRealm extends AuthenticatingRealm {
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
 
         log.info("----------authentication beginning----------");
-        boolean result = operatorService.userAuth((String) token.getPrincipal(), (String) token.getCredentials());
+        boolean result = operatorService.userAuth((String) token.getPrincipal(), (char[]) token.getCredentials());
         log.info("----------authentication check finish----------");
         if(result){
             return new SimpleAuthenticationInfo(token.getPrincipal(),token.getCredentials(),(String) token.getPrincipal());
         }
-        return null;
+        return new SimpleAuthenticationInfo(token.getPrincipal(),token.getCredentials(),"withoutAuth");
     }
     
 }

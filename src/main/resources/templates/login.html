@@ -2,9 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>Login</title>
 </head>
 <body>
-$END$
+
+<form action="/auth/login" method="post">
+    <div><p>用户名</p><input name="username" type="text"></div>
+    <div><p>密码</p><input name="password" type="text"></div>
+    <button type="submit">登陆</button>
+</form>
+
 </body>
 </html>

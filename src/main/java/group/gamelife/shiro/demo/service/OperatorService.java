@@ -5,6 +5,8 @@ import group.gamelife.shiro.demo.repository.OperatorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
+
 /**
  * Created by xiongyizhou on 2019/8/13 11:03
  * E-mail: xiongyizhou@powerpms.com
@@ -21,9 +23,12 @@ public class OperatorService {
         this.repository = repository;
     }
 
-    public boolean userAuth(String username, String password){
+    public boolean userAuth(String username, char[] password){
         Operator op = repository.findOperatorByName(username);
-        return op.getPassword().equals(password);
+        if(op==null){
+            return false;
+        }
+        return Arrays.equals(op.getPassword().toCharArray(), password);
     }
 
 }

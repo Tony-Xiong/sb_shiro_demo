@@ -1,5 +1,7 @@
 package group.gamelife.shiro.demo.entity;
 
+import lombok.Data;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -11,6 +13,7 @@ import javax.persistence.Id;
  * @author xiongyizhou
  */
 @Entity
+@Data
 public class Role {
     @Id private Integer roleId;
     @Column private String roleName;
