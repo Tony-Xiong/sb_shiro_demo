@@ -31,8 +31,13 @@ public class WebResource {
           + "<body>\n"
           + "<h1>welcome</h1>\n"
           + "<h2>you are already login the system!</h2>\n"
-          + "<h3>Good!</h3>\n" + "<h4>"+SecurityUtils.getSubject().getPrincipal().toString()+"</h4>\n"
-          + "<form action=\"/auth/logout\"></form>\n"
+          + "<h3>Good!</h3>\n"
+          + "<h4>"
+          + SecurityUtils.getSubject().getPrincipal().toString()
+          + "</h4>\n"
+          + "<form action=\"/auth/logout\" method=\"post\">\n"
+          + "    <button type=\"submit\" >登出</button>\n"
+          + "</form>"
           + "</body>\n"
           + "</html>";
         }

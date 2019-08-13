@@ -2,17 +2,13 @@ package group.gamelife.shiro.demo.web;
 
 import lombok.extern.java.Log;
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.ShiroException;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.UsernamePasswordToken;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
@@ -38,7 +34,7 @@ public class AuthController {
             SecurityUtils.getSubject().login(token);
         } catch (AuthenticationException e) {
             log.warning(e.getMessage());
-        } catch (ShiroException e) {
+        } catch (Throwable e) {
             log.warning(e.getMessage());
         }
 
@@ -46,7 +42,7 @@ public class AuthController {
         response.sendRedirect("/index");
     }
 
-    @RequestMapping("logout")
+    @PostMapping("logout")
     public void logout(HttpServletResponse response) throws IOException {
         SecurityUtils.getSubject().logout();
         response.sendRedirect("/login");
