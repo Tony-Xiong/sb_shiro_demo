@@ -32,7 +32,8 @@ public class CustomRealm extends AuthenticatingRealm {
         if(result){
             return new SimpleAuthenticationInfo(token.getPrincipal(),token.getCredentials(),(String) token.getPrincipal());
         }
-        return new SimpleAuthenticationInfo(token.getPrincipal(),token.getCredentials(),"withoutAuth");
+        //return new SimpleAuthenticationInfo(token.getPrincipal(),token.getCredentials(),"withoutAuth");
+        return null;
     }
     
 }

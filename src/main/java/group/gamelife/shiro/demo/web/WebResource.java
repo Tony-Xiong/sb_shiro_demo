@@ -1,12 +1,16 @@
 package group.gamelife.shiro.demo.web;
 
+import group.gamelife.shiro.demo.entity.Role;
+import group.gamelife.shiro.demo.service.OperatorService;
 import org.apache.shiro.SecurityUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Set;
 
 /**
  * Created by xiongyizhou on 2019/8/13 13:22
@@ -17,10 +21,16 @@ import java.io.IOException;
 @RestController
 public class WebResource {
 
+    @Autowired
+    private OperatorService operatorService;
+
     @GetMapping("/index")
     public String index(HttpServletResponse response) throws IOException {
 
     if (SecurityUtils.getSubject().isAuthenticated()) {
+
+      String principal = SecurityUtils.getSubject().getPrincipal().toString();
+      Set<Role> roles = operatorService.getRolesByOperator(principal);
 
       return "<!DOCTYPE html>\n"
           + "<html lang=\"en\">\n"
@@ -33,10 +43,11 @@ public class WebResource {
           + "<h2>you are already login the system!</h2>\n"
           + "<h3>Good!</h3>\n"
           + "<h4>"
-          + SecurityUtils.getSubject().getPrincipal().toString()
+          + "username:"+principal
           + "</h4>\n"
+          + "<p>" + roles +"</p>"
           + "<form action=\"/auth/logout\" method=\"post\">\n"
-          + "    <button type=\"submit\" >登出</button>\n"
+          + "    <button type=\"submit\" >logout</button>\n"
           + "</form>"
           + "</body>\n"
           + "</html>";
@@ -57,10 +68,13 @@ public class WebResource {
         + "</head>\n"
         + "<body>\n"
         + "\n"
+        + "<h1>Login Page</h1>\n"
+        + "<h3> default admin account: admin/admin </h3>"
+        + "<h3> default user account: user1/123456 </h3>"
         + "<form action=\"/auth/login\" method=\"post\">\n"
-        + "    <div><p>用户名</p><input name=\"username\" type=\"text\"></div>\n"
-        + "    <div><p>密码</p><input name=\"password\" type=\"text\"></div>\n"
-        + "    <button type=\"submit\">登陆</button>\n"
+        + "    <div><p>username</p><input name=\"username\" type=\"text\"></div>\n"
+        + "    <div><p>password</p><input name=\"password\" type=\"text\"></div>\n"
+        + "    <button type=\"submit\">login</button>\n"
         + "</form>\n"
         + "\n"
         + "</body>\n"

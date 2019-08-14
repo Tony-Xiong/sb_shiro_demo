@@ -4,6 +4,9 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
+
+import static javax.persistence.CascadeType.ALL;
 
 /**
  * Created by xiongyizhou on 2019/8/13 10:44
@@ -18,7 +21,6 @@ public class Operator {
     @Column private String name;
     @Column private int age;
     @Column private String password;
-    @OneToMany(orphanRemoval = true)
-    @JoinColumn(name = "roleId")
-    private List<Role> roles;
+    @ManyToMany(targetEntity=group.gamelife.shiro.demo.entity.Role.class)
+    private Set<Role> roles;
 }

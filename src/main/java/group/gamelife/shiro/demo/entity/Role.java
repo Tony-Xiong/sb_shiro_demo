@@ -1,10 +1,10 @@
 package group.gamelife.shiro.demo.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Set;
 
 /**
  * Created by xiongyizhou on 2019/8/13 10:46
@@ -17,4 +17,5 @@ import javax.persistence.Id;
 public class Role {
     @Id private Integer roleId;
     @Column private String roleName;
+
 }
