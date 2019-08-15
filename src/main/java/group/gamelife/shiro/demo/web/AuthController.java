@@ -13,8 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * Created by xiongyizhou on 2019/8/13 13:21
- * E-mail: xiongyizhou@powerpms.com
+ * Created by xiongyizhou on 2019/8/13 13:21 E-mail: xiongyizhou@powerpms.com
  *
  * @author xiongyizhou
  */
@@ -23,29 +22,28 @@ import java.io.IOException;
 @Log
 public class AuthController {
 
-    @PostMapping("login")
-    public void login(HttpServletResponse response, String username, String password) throws IOException {
+  @PostMapping("login")
+  public void login(HttpServletResponse response, String username, String password)
+      throws IOException {
 
-        log.info("auth/login");
+    log.info("auth/login");
 
-        AuthenticationToken token = new UsernamePasswordToken(username,password);
+    AuthenticationToken token = new UsernamePasswordToken(username, password);
 
-        try {
-            SecurityUtils.getSubject().login(token);
-        } catch (AuthenticationException e) {
-            log.warning(e.getMessage());
-        } catch (Throwable e) {
-            log.warning(e.getMessage());
-        }
-
-
-        response.sendRedirect("/index");
+    try {
+      SecurityUtils.getSubject().login(token);
+    } catch (AuthenticationException e) {
+      log.warning(e.getMessage());
+    } catch (Throwable e) {
+      log.warning(e.getMessage());
     }
 
-    @PostMapping("logout")
-    public void logout(HttpServletResponse response) throws IOException {
-        SecurityUtils.getSubject().logout();
-        response.sendRedirect("/login");
-    }
+    response.sendRedirect("/index");
+  }
 
+  @PostMapping("logout")
+  public void logout(HttpServletResponse response) throws IOException {
+    SecurityUtils.getSubject().logout();
+    response.sendRedirect("/login");
+  }
 }

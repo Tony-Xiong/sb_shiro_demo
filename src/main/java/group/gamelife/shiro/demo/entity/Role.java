@@ -7,15 +7,13 @@ import javax.persistence.*;
 import java.util.Set;
 
 /**
- * Created by xiongyizhou on 2019/8/13 10:46
- * E-mail: xiongyizhou@powerpms.com
- *
+ * Created by xiongyizhou on 2019/8/13 10:46 E-mail: xiongyizhou@powerpms.com
+ * role entity / 角色实例
  * @author xiongyizhou
  */
 @Entity
 @Data
 public class Role {
-    @Id private Integer roleId;
-    @Column private String roleName;
-
+  @Id private Integer roleId;
+  @Column private String roleName;
 }

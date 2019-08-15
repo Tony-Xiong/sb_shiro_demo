@@ -6,8 +6,6 @@ spring:
     type: com.zaxxer.hikari.HikariDataSource
     hikari:
       pool-name: Hikari
-
-
   h2:
     console:
       enabled: true

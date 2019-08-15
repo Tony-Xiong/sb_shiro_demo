@@ -13,19 +13,22 @@ import java.io.IOException;
 import java.util.Set;
 
 /**
- * Created by xiongyizhou on 2019/8/13 13:22
- * E-mail: xiongyizhou@powerpms.com
- *
+ * Created by xiongyizhou on 2019/8/13 13:22 E-mail: xiongyizhou@powerpms.com
+ * login page and index page / 主页和登录页
  * @author xiongyizhou
  */
 @RestController
 public class WebResource {
 
-    @Autowired
-    private OperatorService operatorService;
+  @Autowired private OperatorService operatorService;
 
-    @GetMapping("/index")
-    public String index(HttpServletResponse response) throws IOException {
+  @GetMapping("")
+  public void defaultPage(HttpServletResponse response) throws IOException {
+    response.sendRedirect("/index");
+  }
+
+  @GetMapping("/index")
+  public String index(HttpServletResponse response) throws IOException {
 
     if (SecurityUtils.getSubject().isAuthenticated()) {
 
@@ -43,23 +46,25 @@ public class WebResource {
           + "<h2>you are already login the system!</h2>\n"
           + "<h3>Good!</h3>\n"
           + "<h4>"
-          + "username:"+principal
+          + "username:"
+          + principal
           + "</h4>\n"
-          + "<p>" + roles +"</p>"
+          + "<p>"
+          + roles
+          + "</p>"
           + "<form action=\"/auth/logout\" method=\"post\">\n"
           + "    <button type=\"submit\" >logout</button>\n"
           + "</form>"
           + "</body>\n"
           + "</html>";
-        }
-    else {
-        response.sendRedirect("/login");
-        return "";
+    } else {
+      response.sendRedirect("/login");
+      return "";
     }
-    }
+  }
 
-    @RequestMapping("/login")
-    public String loginPage(){
+  @RequestMapping("/login")
+  public String loginPage() {
     return "<!DOCTYPE html>\n"
         + "<html lang=\"en\">\n"
         + "<head>\n"
@@ -79,5 +84,5 @@ public class WebResource {
         + "\n"
         + "</body>\n"
         + "</html>";
-    }
+  }
 }
