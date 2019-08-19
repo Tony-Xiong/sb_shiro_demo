@@ -14,7 +14,7 @@ import java.util.Optional;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @Log
-public class DemoApplicationTests {
+public class AppApplicationTests {
 
   @Autowired private OperatorRepository repository;
 

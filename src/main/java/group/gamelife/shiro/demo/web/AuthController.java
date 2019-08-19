@@ -14,7 +14,7 @@ import java.io.IOException;
 
 /**
  * Created by xiongyizhou on 2019/8/13 13:21 E-mail: xiongyizhou@powerpms.com
- *
+ * login logout web API / 登陆和登出的web接口
  * @author xiongyizhou
  */
 @RestController
