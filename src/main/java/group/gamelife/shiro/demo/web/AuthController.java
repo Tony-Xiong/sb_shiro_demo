@@ -34,8 +34,6 @@ public class AuthController {
       SecurityUtils.getSubject().login(token);
     } catch (AuthenticationException e) {
       log.warning(e.getMessage());
-    } catch (Throwable e) {
-      log.warning(e.getMessage());
     }
 
     response.sendRedirect("/index");

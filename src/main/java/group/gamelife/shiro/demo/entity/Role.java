@@ -1,10 +1,10 @@
 package group.gamelife.shiro.demo.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
-import javax.persistence.*;
-import java.util.Set;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 /**
  * Created by xiongyizhou on 2019/8/13 10:46 E-mail: xiongyizhou@powerpms.com

@@ -2,7 +2,9 @@ package group.gamelife.shiro.demo.web;
 
 import group.gamelife.shiro.demo.entity.Role;
 import group.gamelife.shiro.demo.service.OperatorService;
+import lombok.extern.java.Log;
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +20,7 @@ import java.util.Set;
  * @author xiongyizhou
  */
 @RestController
+@Log
 public class WebResource {
 
   @Autowired private OperatorService operatorService;
@@ -84,5 +87,12 @@ public class WebResource {
         + "\n"
         + "</body>\n"
         + "</html>";
+  }
+
+  @RequiresRoles({"admin"})
+  @GetMapping("/admin")
+  public String adminPage(){
+    log.info("admin?????????????????????"+SecurityUtils.getSubject().hasRole("admin"));
+    return "admin";
   }
 }

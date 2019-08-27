@@ -2,11 +2,11 @@ package group.gamelife.shiro.demo.entity;
 
 import lombok.Data;
 
-import javax.persistence.*;
-import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import java.util.Set;
-
-import static javax.persistence.CascadeType.ALL;
 
 /**
  * Created by xiongyizhou on 2019/8/13 10:44 E-mail: xiongyizhou@powerpms.com
