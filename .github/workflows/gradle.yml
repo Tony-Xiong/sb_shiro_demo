@@ -14,4 +14,8 @@ jobs:
       with:
         java-version: 1.8
     - name: Build with Gradle
-      run: ls -al
+      run:  |
+          chmod . 755
+          chmod gradlew 755
+          ./gradlew
+          
